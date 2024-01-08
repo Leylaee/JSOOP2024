@@ -10,11 +10,48 @@
 <body>
     <h1>Welkom</h1>
     <a href="http://www.google.be">click mij</a>
-    <p id="eersteP">Welkom op mijn <strong>site</strong>. </p>
+    <p id="eersteP" class="vet">Welkom op mijn <strong>site</strong>. </p>
     <p>Hier vind je alle informatie over mij.</p>
     <a href="http://www.hbvl.be">www.hbvl.be</a>
 
+    <div id="content">
+        <h2>Links op mijn site</h2>
+        <p><a class="contentLinks" href="cv.html">Bekijk mijn <strong>CV</strong>.</a></p>
+        <p><a class="contentLinks" href="portfolio.html">Wil je mijn <strong>portfolio</strong> eens zien?</a></p>
+    </div>
 
+
+
+
+    <script>
+        "use strict";
+        let alleLinks = document.getElementsByTagName("a");
+        console.log(alleLinks);
+
+        for (let i = 0; i < alleLinks.length; i++) {
+            console.log(alleLinks[i].innerHTML);
+        }
+
+        let contnt = document.getElementById("content");
+        console.log(contnt);
+        console.log(contnt.innerHTML);
+        console.log(contnt.innerText);
+
+        let vetClass = document.getElementsByClassName("vet");
+        console.log(vetClass);
+
+        let contentLinks = document.getElementsByClassName("contentLinks");
+        for (let i = 0; i < contentLinks.length; i++) {
+            console.log(contentLinks[i].innerText);
+            console.log(contentLinks[i].getAttribute("href"));
+            contentLinks[i].setAttribute("href", "#");
+            console.log(contentLinks[i].getAttribute("href"));
+        }
+
+        document.getElementsByClassName("contentLinks")[0].style.color = "green";
+
+
+    </script>
 </body>
 
 </html>
