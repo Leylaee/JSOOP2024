@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         let boodschappen = [];
@@ -20,16 +22,17 @@
 
         let inhoud = ["400g", "1l", "1,5l"];
 
-        boodschappen.forEach(function (b, index){
-               b.splice(2,0, inhoud[index]);
-               console.log(boodschappen);
-               console.log(`${b[0]} - aantal:${b[1]} - inhoud:${b[2]} - status:${b[3]}` );
-            });
-        
+        boodschappen.forEach(function (boodschap, index) {
+            boodschap.splice(2, 0, inhoud[index]);
+            console.log(boodschappen);
+            console.log(`${boodschap[0]} - aantal:${boodschap[1]} - inhoud:${boodschap[2]} - status:${boodschap[3]}`);
+        });
+
 
 
 
 
     </script>
 </body>
+
 </html>
