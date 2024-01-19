@@ -15,8 +15,23 @@
        window.addEventListener("DOMContentLoaded", function () {
 	   let largeImg = document.getElementById("largeImg");
 	   let bestandsnamen = ["ipad.jpg", "dj.jpg", "ubuntu.jpg", "electronica.jpg"];
-	   
-	
+	   let teller = 1;
+
+	   largeImg.addEventListener("click", function () {
+	   let a =  document.createElement("a");
+       let img = document.createElement("img");
+
+	   a.href = "550x400/" + bestandsnamen[teller];
+	   a.titel = bestandsnamen[teller].substring(0, bestandsnamen[teller].length - 4);
+
+	   img.src = "200x150/" + bestandsnamen[teller];
+       img.alt = bestandsnamen[teller].substring(0, bestandsnamen[teller].length - 4);
+
+	   document.getElementById("thumbs").appendChild(a);
+	   a.appendChild(img);
+
+
+	    });
 	});
 	</script>
 </body>
