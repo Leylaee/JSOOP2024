@@ -11,29 +11,48 @@
 	<div id="thumbs">
 		<a href="550x400/ipad.jpg" title="ipad"><img src="200x150/ipad.jpg"></a>
 	</div>
+	<button id="bttn">Voeg afbeelding toe </button>
+	
 	<script>
-       window.addEventListener("DOMContentLoaded", function () {
-	   let largeImg = document.getElementById("largeImg");
-	   let bestandsnamen = ["ipad.jpg", "dj.jpg", "ubuntu.jpg", "electronica.jpg"];
-	   let teller = 1;
+		window.addEventListener("DOMContentLoaded", function () {
+			let largeImg = document.getElementById("largeImg");
+			let bestandsnamen = ["ipad.jpg", "dj.jpg", "ubuntu.jpg", "electronica.jpg"];
+			let teller = 1;
+	
+			
+	
+			document.getElementById('bttn').addEventListener("click", function () {
+				let a =  document.createElement("a");
+				let img = document.createElement("img");
+	
+				a.href = "550x400/" + bestandsnamen[teller];
+				a.title = bestandsnamen[teller].substring(0, bestandsnamen[teller].length - 4);
+	
+				img.src = "200x150/" + bestandsnamen[teller];
+				img.alt = bestandsnamen[teller].substring(0, bestandsnamen[teller].length - 4);
+	
+				document.getElementById("thumbs").appendChild(a);
+				a.appendChild(img);
 
-	   largeImg.addEventListener("click", function () {
-	   let a =  document.createElement("a");
-       let img = document.createElement("img");
-
-	   a.href = "550x400/" + bestandsnamen[teller];
-	   a.titel = bestandsnamen[teller].substring(0, bestandsnamen[teller].length - 4);
-
-	   img.src = "200x150/" + bestandsnamen[teller];
-       img.alt = bestandsnamen[teller].substring(0, bestandsnamen[teller].length - 4);
-
-	   document.getElementById("thumbs").appendChild(a);
-	   a.appendChild(img);
+				teller++;
+			});
 
 
-	    });
-	});
+
+
+			document.getElementById('thumbs').addEventListener("click", function (event) {
+				event.preventDefault();
+	
+				if (event.target.nodeName === 'IMG') {
+					largeImg.src = event.target.parentNode.href;
+					largeImg.alt = event.target.alt;
+				}
+			});
+		});
+
 	</script>
+       
+
 </body>
 
 </html>
