@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		html, body {
+			height: 100%;
+		}
+
+		#hex {
+			color: white; 
+			font: 64px/64px Verdana; 
+			height: 64px;
+			/*Vertical center*/
+			position: relative; 
+			top: 50%; 
+			margin-top: -32px;
+			/*Horizontal center*/
+			text-align: center;
+		}
+	</style>
+</head> 
+<body>
+	<div id="hex"></div>
+	<label>Dag: <input id="dag" size="2"></label>
+	<label>Maand: <input id="maand" size="2"></label>
+	<label>Jaartal: <input id="jaartal" size="2"></label>
+	<input type="button" id="myBtn" value="Toon de kleur van je geboorte">
+
+	<script type="text/javascript">
+		"use strict";
+		let geboortekleur = {
+			dag : null,
+		    maand : null,
+		    jaartal : null,
+		    toonkleur()
+			     {
+					let color = "#" + this.dag + this.maand + this.jaartal;
+                    document.body.style.backgroundColor = color;
+                    document.getElementById("hex").innerHTML = color; 
+				 }
+				};
+		
+		window.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("myBtn").addEventListener("click", displayGeboortekleur);
+        });
+
+		function displayGeboortekleur(){
+			geboortekleur.dag = document.getElementById("dag").value;
+			geboortekleur.maand = document.getElementById("maand").value;
+			geboortekleur.jaartal = document.getElementById("jaartal").value;
+		
+			geboortekleur.dag = checkSingle(geboortekleur.dag);
+			geboortekleur.maand = checkSingle(geboortekleur.maand);
+			geboortekleur.jaartal = checkSingle(geboortekleur.jaartal);
+
+			geboortekleur.toonkleur();
+		}
+
+
+		function checkSingle(date) {
+        if (date.length === 1) {
+   	    date = `0${date}`;
+        }
+        return date;
+        }
+
+
+		
+
+
+
+	</script>
+</body>
+</html>
