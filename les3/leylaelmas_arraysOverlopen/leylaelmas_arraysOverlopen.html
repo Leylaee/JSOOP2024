@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict";
+        let designVakken = ["HTML&CSS", "Photoshop", "Interface", "Drupal"];
+        console.log(designVakken);
+
+        let ontwikkelingVakken = ["Workflows", "Javascript", "jQuery", "PHP"];
+        console.log(ontwikkelingVakken);
+
+        let alleVakken = designVakken.concat(ontwikkelingVakken);
+        console.log(alleVakken);
+
+        let puurProgrammeren = ontwikkelingVakken.slice(1, ontwikkelingVakken.length);
+        console.log(puurProgrammeren);
+
+        let afdelingVakken = alleVakken.map(function (vak) {
+            return "FeDev - " + vak;
+        });
+        console.log(afdelingVakken);
+
+        ontwikkelingVakken.splice(4, 0, "JS-OOP", "PHP-OOP");
+        console.log(ontwikkelingVakken);
+
+        alleVakken.push("JS-OOP", "PHP-OOP");
+        console.log(alleVakken);
+
+        alleVakken.unshift("Illustrator");
+        console.log(alleVakken);
+
+        alleVakken.shift("Illustrator");
+        console.log(alleVakken);
+
+
+        function telop(totaal, vak) {
+            return totaal + 1;
+        };
+
+        let totaalVakken = alleVakken.reduce(telop, 0);
+        console.log(totaalVakken);
+
+        let punten = [87, 93, 75, 81, 74, 85, 92, 91, 67, 65];
+        console.log(punten);
+
+        function combineer(resultaat, vak, i) {
+            return resultaat.concat(vak + " " + punten[i]);
+        };
+        let vakkenEnPunten = alleVakken.reduce(combineer, []);
+        console.log(vakkenEnPunten);
+    </script>
+</body>
+
+</html>
