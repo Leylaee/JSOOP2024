@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        "use strict";
+        window.addEventListener("DOMContentLoaded", function () {
+        });
+
+
+
+        let alleResultaten = [];
+
+
+        function Resultaat(golfbaan, datum, hole, par, strokes){
+            this.golfbaan = golfbaan;
+            this.datum = datum;
+            this.hole = hole;
+            this.par = par;
+            this.strokes = strokes;
+            this.score = '';
+            this.setScore = function(){
+                if (this.strokes === 1) {
+                this.score = "Hole in one!";
+                } else if (this.strokes <= this.par - 2) {
+                this.score = "Eagle";
+                } else if (this.strokes <= this.par - 1) {
+                this.score = "Birdie";
+                } else if (this.strokes === this.par) {
+                this.score = "Par";
+                } else if (this.strokes === this.par + 1) {
+                this.score = "Bogey";
+                } else if (this.strokes === this.par + 2) {
+                this.score = "Double Bogey";
+                }
+            };
+            this.save = function(){
+                alleResultaten.push(this);
+            }
+        }
+        
+        let rn = [
+                    new Resultaat("Groene Weide", "01/01/2020", 1, 10, 13),
+                    new Resultaat("Groene Weide", "01/01/2020", 2, 12, 12),
+                    new Resultaat("Konings Hooi", "08/01/2020", 3, 12, 1)
+                    ];
+        
+        rn.forEach(res => {
+        res.setScore();
+        res.save();
+        });
+
+
+        function show(){
+            let lengte = alleResultaten.length;
+            document.write('Resultaat:')
+            for (let i = 0; i< lengte; i++){
+            document.write(`
+            <p>Golfbaan : ${alleResultaten[i].golfbaan}</p>
+            <p>datum : ${alleResultaten[i].datum}</p>
+            <p>Hole: ${alleResultaten[i].hole}</p>
+            <p>Par : ${alleResultaten[i].par}</p>
+            <p>Strokes : ${alleResultaten[i].strokes}</p>
+            <p>Score : ${alleResultaten[i].score} </p>
+            `); 
+            }
+        }
+
+        show();
+    </script>
+</body>
+</html>
