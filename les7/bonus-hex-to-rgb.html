@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB to Hex Converter</title>
+</head>
+<body>
+    <form id="myForm">
+        R: <input type="text" id="kleurRIn" maxlength="3" size="3" />
+        G: <input type="text" id="kleurGIn" maxlength="3" size="3" />
+        B: <input type="text" id="kleurBIn" maxlength="3" size="3" />
+        <input type="button" id="bereken" value="Bereken de kleur" />
+        <input type="text" id="hexWaardeOut">
+    </form>
+
+    <script>
+        "use strict";
+
+        class KleurHex {
+            constructor(r, g, b) {
+                this.r = r;
+                this.g = g;
+                this.b = b;
+            }
+
+            hexString() {
+                let hexR = this.controleerDigit(this.r);
+                let hexG = this.controleerDigit(this.g);
+                let hexB = this.controleerDigit(this.b);
+                return `#${hexR}${hexG}${hexB}`;
+            }
+
+            controleerDigit(waarde) {
+                let hex = parseInt(waarde).toString(16).toUpperCase();
+                return hex.length === 1 ? "0" + hex : hex;
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("bereken").addEventListener("click", berekenKleur);
+        });
+
+        function berekenKleur() {
+            let r = document.getElementById("kleurRIn").value;
+            let g = document.getElementById("kleurGIn").value;
+            let b = document.getElementById("kleurBIn").value;
+
+            let mijnKleurHex = new KleurHex(r, g, b);
+            let hexWaarde = mijnKleurHex.hexString();
+
+            document.getElementById("hexWaardeOut").value = hexWaarde;
+            document.body.style.backgroundColor = hexWaarde;
+        }
+    </script>
+</body>
+</html>

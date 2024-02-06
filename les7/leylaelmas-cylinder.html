@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="diameter">Diameter:</label>
+    <input type="number" id="diameter" name="">
+    <label for="hoogte">Hoogte:</label>
+    <input type="number" id="hoogte" name=""> 
+
+    <button id="btnBereken">Bereken</button>
+    <input type="number" id="volume">
+
+
+
+    <script>
+
+    function Cilinder(hoogte,diameter){
+        this.diameter = diameter;
+        this.hoogte = hoogte;
+    }
+
+    Cilinder.prototype.volume = function() {
+        let diamtr = document.getElementById("diameter").value;
+        let h = document.getElementById('hoogte').value;
+        let vol = document.getElementById('volume')
+        let pi = Math.PI;
+        let straal = diamtr / 2;
+        let volume = pi * straal * straal * h;
+        vol.value = volume.toFixed(4);
+    }
+
+
+    document.getElementById('btnBereken').addEventListener('click', function () {
+    new Cilinder().volume();
+    });
+
+
+    </script>
+</body>
+</html>

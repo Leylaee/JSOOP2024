@@ -24,13 +24,29 @@
         this.status = status;
     }
 
-    Boek.prototype.setStatus = function(status) {
+    Boek.prototype.setStatus = function(status ,dc) {
         this.status = status;
+        dc.value = status;
 
     }
 
-    let mijnEersteJavaScriptBoek= new Boek("01234567", "JavaScript, the right way",2012,"jstherightway.com","aanwezig");
+    let mijnEersteJavaScriptBoek= new Boek("01234567", "JavaScript, the right way", "2012" ,"jstherightway.com","aanwezig");
     
+    document.getElementById("isbn").value = mijnEersteJavaScriptBoek.isbn;
+    document.getElementById("titel").value = mijnEersteJavaScriptBoek.titel;
+    document.getElementById("jaar").value = mijnEersteJavaScriptBoek.jaartal;
+    document.getElementById("publisher").value = mijnEersteJavaScriptBoek.uitgever;
+    document.getElementById("status").value = mijnEersteJavaScriptBoek.status;
+    
+    document.getElementById('btnOntleend').addEventListener('click', function () {
+    mijnEersteJavaScriptBoek.setStatus("ontleend", document.getElementById('status'));
+    });
+
+    document.getElementById('btnTerugBinnen').addEventListener('click', function () {
+    mijnEersteJavaScriptBoek.setStatus("aanwezig", document.getElementById('status'));
+    });
+
+
 
 </script>
 </body>
