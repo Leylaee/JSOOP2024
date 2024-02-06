@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Geef je geboortejaar in (4 cijfers)</p>
+    <input id="geboortejaar">
+    <button id="btnBerekenLeeftijd">Bereken leeftijd</button>
+    <p id="weergave"></p>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('btnBerekenLeeftijd').addEventListener("click", berekenLeeftijd);
+        });
+        
+        function berekenLeeftijd() {
+        let geboortejaar = document.getElementById('geboortejaar').value;
+        localStorage.geboortejaar = geboortejaar;
+        let now = new Date();
+        now = now.getFullYear();
+        let leeftijd = now - localStorage.geboortejaar;
+        document.getElementById('weergave').innerHTML = `Dit jaar wordt u  ${leeftijd} jaar`;       }
+
+
+
+    </script>
+</body>
+</html>
