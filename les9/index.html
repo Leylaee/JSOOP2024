@@ -27,9 +27,9 @@
         let h2Titel = document.getElementById("titel");
         let buttonsDiv = document.getElementById("buttonsDiv");
 
-        // Andere variabelen
         let jsonData;
         let selectedButton;
+        let selectedData;
 
         fetch('promises.json')
         .then(response => response.json())
@@ -39,7 +39,22 @@
         .catch(error => {
             pError.innerHTML = "Sorry, de video's kunnen niet ingelezen worden. Probeer later opnieuw. <br> " + error;
         });
+        
+        buttonsDiv.addEventListener('click', function(e) {
+            selectedButton = Array.from(e.target.parentNode.children).indexOf(e.target);
+            setVideoAndLyrics();
+        });
 
+        function setVideoAndLyrics(){
+            if(jsonData){
+              selectedData = jsonData[selectedButton];
+              h2Titel.textContent = selectedData.titel;
+              youtube.src =  "https://www.youtube.com/embed/" + selectedData.youtubeUrl;
+              lyrics.textContent = selectedData.lyrics;         
+            }else{
+              pError.innerHTML = "Sorry, de video's zijn nog niet ingelezen worden. Probeer later opnieuw ";
+            }
+        }
 
 
     </script>
