@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Oefening initialen</h1>
+        <form action="" id="form1" method="POST">
+        Vul de voornaam in:
+        <input id="inputVoornaam" type="text">
+        Vul de achternaam in:
+        <input id="inputAchternaam" type="text">
+        <input id="btnVerzend" type="button" value="Voeg naam toe">
+        </form>
+    <h2>De initialen</h2>
+        <div id="divInitialen"></div>
+
+        <script>
+            (function () {
+                let model = {
+                    personen : [],
+                    voegPersoonToe(persoon){
+                        model.personen.push(persoon);
+                    },
+                    getPerzonen(){
+                        return model.personen;
+                    }
+                };
+                let view = {
+                    setup(){
+                        view.inputVoornaam = document.getElementById('inputVoornaam');
+                        view.inputAchternaam = document.getElementById('inputAchternaam');
+                        view.divInitialen = document.getElementById('divInitialen');
+                    },
+                    renderNamen(alleNamen){
+                        view.divInitialen.innerHTML = "";
+                        for (let i = 0; i < alleNamen.length; i++) {
+                            view.divInitialen.innerHTML += `<p>Naam: ${alleNamen[i].voornaam} ${alleNamen[i].achternaam} -> initialen: ${view.getInitials(alleNamen[i])}</p>`;
+                        }
+                    },
+                    getInitials(object){
+                        return object.voornaam.charAt(0) + object.achternaam.charAt(0);
+
+                    },
+                    clear(){
+                        view.inputVoornaam.value = '';
+                        view.inputAchternaam.value = '';
+
+                    }
+                };
+                let controller = {
+                    setup: function (){
+                        controller.inputVoornaam = document.getElementById('inputVoornaam');
+                        controller.inputAchternaam = document.getElementById('inputAchternaam');
+                        controller.btnVerzend = document.getElementById('btnVerzend');
+                        controller.btnVerzend.addEventListener('click', controller.verstuurForm);
+                    },
+                    verstuurForm(){
+                        let persoon={
+                            voornaam: controller.inputVoornaam.value,
+                            achternaam: controller.inputAchternaam.value
+                        };
+                        if(controller.inputVoornaam.value.length == 0 || controller.inputAchternaam.value.length){
+                            alert('Vul voornaam en achternaam in');
+                        }
+                        else{
+                            model.voegPersoonToe(persoon);
+                            view.renderNamen(model.getPerzonen());
+                            view.clear();
+                        }
+                    }
+                };
+                view.setup();
+                controller.setup();
+            })();
+        </script>
+</body>
+</html>

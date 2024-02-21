@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="isbn" name="">
+    <input type="text" id="titel" name="">
+    <input type="text" id="jaar" name="">
+    <input type="text" id="publisher" name="">
+    <input type="text" id="status" name="">
+    <button id="btnOntleend">ontleend</button>
+    <button id="btnTerugBinnen">terug binnen</button>
+
+    <script>
+        "use strict";
+
+        (function () {
+            let model = {
+                boek: {},
+                init() {
+                    model.boek.isbn = '01234567',
+                    model.boek.titel = 'JavaSript, the right way',
+                    model.boek.jaar = '2012',
+                    model.boek.publisher = 'jstherightway.com',
+                    model.boek.status = "aanwezig"
+                },
+                setStatus(status){
+                    model.boek.status = status;
+                    view.setView(model.boek);
+                },
+                getData(){
+                    return model.boek;
+                }
+            };
+            let view = {
+                init(){
+                    view.isbn = document.getElementById('isbn');
+                    view.titel = document.getElementById('titel');
+                    view.jaar = document.getElementById('jaar');
+                    view.publisher = document.getElementById('publisher');
+                    view.status = document.getElementById('status'); 
+                },
+                setView(object){
+                    view.isbn.value = object.isbn;
+                    view.titel.value = object.titel;
+                    view.jaar.value = object.jaar;
+                    view.publisher.value = object.publisher;
+                    view.status.value = object.status;
+                }
+            };
+            let controller = {
+                init(){
+                    model.init();
+                    view.init();
+                    controller.btnOntleend = document.getElementById('btnOntleend');
+                    controller.btnOntleend.addEventListener('click' , function(){
+                            model.setStatus('ontleend');
+                    });
+            
+                    controller.btnTerugBinnen = document.getElementById('btnTerugBinnen');
+                    controller.btnTerugBinnen.addEventListener('click' , function(){
+                            model.setStatus('aanwezig');
+                    });
+                view.setView(model.boek);
+                    
+                }   
+            };
+            controller.init();
+        })();
+
+    </script>
+    
+</body>
+</html>
